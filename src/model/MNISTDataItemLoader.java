@@ -145,93 +145,8 @@ public class MNISTDataItemLoader extends MNISTDataItem {
 	}
 	
 	public double getConfidence( int k ) {   
-		System.out.println("start knn");
-		int maxCountLabel = 0; 
-	    int maxCount = 0;
-	    try {
-	    	this.sortArray(); 
-	    	int differenceCount = 1 ;  
-	    	
-	    	for(int firstCount = 0; firstCount < k; firstCount++ ) {
-	    		MNISTDataItem LIatIndex = get(firstCount);
-	    		MNISTDataItem currentLabel = currentDataItems[firstCount];
-	    		System.out.println("first Count");
-	    		
-	    	}
-	    	
-	    	for(int secondCount = 0; secondCount < k; secondCount++ ) {
-	    		if (secondCount > 0  ) {
-	    			MNISTDataItem objectAtCurrentIndex = currentDataItems[secondCount];
-	    			MNISTDataItem objectAtPreviousIndex = currentDataItems[secondCount - 1]; 
-	    			if (objectAtCurrentIndex.getMNISTlbl()  !=  objectAtPreviousIndex.getMNISTlbl() ) {
-	    				differenceCount++; 
-	    				System.out.println("second Count");
-	    			}
-	    		}
-	    	}
-	    	int[] labelTrackingArray = new int[differenceCount]; 
-	    	int[] countTrackingArray = new int[differenceCount];
-	    	double[] distanceTrackingArray = new double[differenceCount]; 
-	    	int count = 1; 
-	    	int internalDifferenceCount = 0; 
-	    	for (int thirdCount = 0; thirdCount < k; thirdCount++) {
-	    		if(internalDifferenceCount <= differenceCount) {
-	    			int trackedLabel = currentDataItems[thirdCount].getMNISTlbl();
-	    			double trackedDistance = currentDataItems[thirdCount].getKnnDistanceValue(); 
-	    			if (thirdCount > 0) {
-	    				MNISTDataItem selectedObjectAtCurrentIndex = currentDataItems[thirdCount] ;
-	    				MNISTDataItem selectedObjectAtPreviousIndex = currentDataItems[thirdCount - 1];
-	    				if(selectedObjectAtCurrentIndex.getMNISTlbl() == selectedObjectAtPreviousIndex.getMNISTlbl()) {
-	    					count++;
-	    				}
-	    				else {
-	    					trackedLabel = selectedObjectAtCurrentIndex.getMNISTlbl();
-	    					trackedDistance = selectedObjectAtCurrentIndex.getKnnDistanceValue();
-	    					count = 1; 
-	    					internalDifferenceCount++;
-	    				}
-	    				
-	    			}
-	    			
-	    			labelTrackingArray[internalDifferenceCount] = trackedLabel;
-	    			countTrackingArray[internalDifferenceCount] = count;
-	    			distanceTrackingArray[internalDifferenceCount] = trackedDistance; 
-	    			}
-	    	}
-	    	System.out.println("third Count");
-	    	 for (int fourthCount = 0; fourthCount < differenceCount; fourthCount++) {
-	    		 if(fourthCount > 0) {
-	    			 if(distanceTrackingArray[fourthCount - 1] < distanceTrackingArray[fourthCount]) {
-	    				 if(countTrackingArray[fourthCount] >= countTrackingArray[fourthCount - 1]) {
-	    					 maxCountLabel = labelTrackingArray[fourthCount - 1]; 
-	    					 maxCount = countTrackingArray[fourthCount - 1];
-	    				 }
-	    			 }
-	    			 else {
-	    				 maxCountLabel = labelTrackingArray[fourthCount];
-	    				 maxCount = countTrackingArray[fourthCount];
-	    			 }
-	    		 }
-	    			 else {
-	    				 maxCountLabel = labelTrackingArray[fourthCount]; 
-	    				 maxCount = countTrackingArray[fourthCount];
-	    				 }
-	    		 }
-	    	 System.out.println("fourth count");
-	    	 } catch (Exception e) {
-	    		 e.printStackTrace();
-	    	 }
-	    	this.setRecogniseDidgit(maxCountLabel);
-		    double accuracyratio = ((double) maxCount / k ) * 100; 
-			return accuracyratio;	
-		}
 	
-		private MNISTDataItem get(int firstCount) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-		/*
+		
 		this.sortArray(); 
 		int[] labelArray = new int [k];
 		MNISTDataItem[] tempMDIArray = this.getDIArray();
@@ -263,7 +178,7 @@ public class MNISTDataItemLoader extends MNISTDataItem {
 		return accuracyratio;
 		
 	}	
-	*/
+	
 	public int getRecogniseDidgit() {
 		return this.recognizedDigit;
 	}
