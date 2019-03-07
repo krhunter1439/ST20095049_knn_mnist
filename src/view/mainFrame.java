@@ -61,12 +61,14 @@ public class mainFrame {
 		 				if (e.getActionCommand() == "IMAGE UPLOAD") {
 		 					CardLayout cl = (CardLayout)(appStartPanel.getLayout());
 		 					cl.show(appStartPanel, "Image Upload");
+		 					System.out.println("Image Upload has been selected");
 		 				}
 	 				} catch (Exception ex) {
 	 					ex.printStackTrace();
 	 				}
 	 		    }
 	 		}); 
+	 		
 	 		// the cards that are able to be displayed. they are added as needed 
 	 		appStartPanel.add(mainPanel, "Main Panel");
 	 		appStartPanel.add(currentDDPanel, "Draw Digit");

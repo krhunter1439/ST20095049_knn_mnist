@@ -28,7 +28,8 @@ public class ImageController {
 		}
 	}
 	*/
-	public BufferedImage convertRGBToGrayscale(BufferedImage img) {
+	public BufferedImage convertRGBToGrayscale(BufferedImage img) { 
+		System.out.println("image has arrrived to be processed");
 		// TODO Auto-generated method stub
 		// converting image to greyscale first before resizing it to maintain accuracy 
 		this.grayscaleImg = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
@@ -48,7 +49,8 @@ public class ImageController {
 						(grayscale << 8 ) |
 						(grayscale);
 				
-				this.grayscaleImg.setRGB(x, y, new_pixel_value);
+				this.grayscaleImg.setRGB(x, y, new_pixel_value); 
+				System.out.println("image converted to grey scale");
 				
 			}
 		}
@@ -66,7 +68,7 @@ public class ImageController {
 			graph2d.drawImage(imageForResize, 0, 0, null);
 			graph2d.dispose();
 			this.setImage(tempImage);
-			
+			System.out.println("image has been resized ");
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -29,7 +29,7 @@ public class ImageUpload {
 		JPanel statusPanel = new JPanel(); 
 		JLabel numberLabel = new JLabel();
 		JLabel accuracyLabel = new JLabel();  
-	//
+
 		
 		 
 		statusPanel.add(numberLabel); 
@@ -63,7 +63,8 @@ public class ImageUpload {
 				        int recognizedDigit = DILoader.getRecogniseDidgit();
 				       double confidenceMeasure = DILoader.getConfidence(3); 
 				        numberLabel.setText("Number: " + recognizedDigit);
-				        accuracyLabel.setText("Accuracy: %" + confidenceMeasure );
+				        accuracyLabel.setText("Accuracy: %" + confidenceMeasure ); 
+				        System.out.println("image sent to be processed ");
 					}
 				} catch (Exception ex) {
 					ex.printStackTrace();
@@ -96,7 +97,7 @@ public class ImageUpload {
 		      				selectedFilePath = selectedFile.getAbsolutePath(); 
 		      				filelocationTextFeild.setText(selectedFilePath);
 		      				// add in another button to send selected file to be compared against the dataset. 
-		      				
+		      				System.out.println("Image Has been Selected ");
 		      			}
 	 				}
 				} catch (Exception ex) {

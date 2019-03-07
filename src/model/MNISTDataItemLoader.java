@@ -6,7 +6,7 @@ import java.io.*;
 //import view.*;
 
 public class MNISTDataItemLoader extends MNISTDataItem {
-	
+
 	private ImageController tempImageController = null;
 	// import MNIST images
 	String train_label_filename = "train-labels.idx1-ubyte";
@@ -38,6 +38,7 @@ public class MNISTDataItemLoader extends MNISTDataItem {
 	}	
 	//creating and populating the array 
 	public void loadItemArray() { 
+		System.out.println("start of MNIST KNN");
 		System.out.println("load array");
 		
 		try {
