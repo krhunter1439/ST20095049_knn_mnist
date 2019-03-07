@@ -30,7 +30,7 @@ public class ImageController {
 	*/
 	public BufferedImage convertRGBToGrayscale(BufferedImage img) {
 		// TODO Auto-generated method stub
-		
+		// converting image to greyscale first before resizing it to maintain accuracy 
 		this.grayscaleImg = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
 		for(int y = 0; y < img.getHeight(); y++) {
 			for(int x = 0; x < img.getWidth(); x++) {
