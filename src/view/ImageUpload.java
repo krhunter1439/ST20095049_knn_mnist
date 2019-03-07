@@ -29,7 +29,7 @@ public class ImageUpload {
 		JPanel statusPanel = new JPanel(); 
 		JLabel numberLabel = new JLabel();
 		JLabel accuracyLabel = new JLabel();  
-	
+	//
 		
 		 
 		statusPanel.add(numberLabel); 
