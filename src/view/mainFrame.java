@@ -5,7 +5,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import model.*;
-
+/* mainPanel: the UI for this java program uses the card layout format. this allows the user to easily switch between the 
+ * two different options, either 1. imageUpload or 2. Draw Digit. Both of these panels also contain a back button if 
+ * if the user is required to change between the two with ease */
 
 
 @SuppressWarnings("unused")
@@ -20,6 +22,7 @@ public class mainFrame {
     public static void loadWindow() {
     	
     	try {
+    		// creating the layout of the main panel and creating the card layout format 
 	    	currentMainFrame = new JFrame("START");
 	    	currentMainFrame.setSize(600,600);
 	    	currentMainFrame.setLayout(appStartPanel.getLayout()); 		
@@ -36,7 +39,7 @@ public class mainFrame {
 	 		mainPanel.add(accuracyLabel1); 		
 	 		mainPanel.add(imageUploadButton);
 	 		mainPanel.add(drawDigitButton);
-	 		
+	 		//Action listner to open the Draw digit panel
 	 		drawDigitButton.addActionListener(new ActionListener() {
 	 			@Override
 	 			public void actionPerformed(ActionEvent e) {
@@ -50,6 +53,7 @@ public class mainFrame {
 	 				}
 	 		    }
 	 		});
+	 		//Action listner to open the imageUpload pannel 
 	 		imageUploadButton.addActionListener(new ActionListener() {
 	 			@Override
 	 			public void actionPerformed(ActionEvent e) {
@@ -62,7 +66,8 @@ public class mainFrame {
 	 					ex.printStackTrace();
 	 				}
 	 		    }
-	 		});
+	 		}); 
+	 		// the cards that are able to be displayed. they are added as needed 
 	 		appStartPanel.add(mainPanel, "Main Panel");
 	 		appStartPanel.add(currentDDPanel, "Draw Digit");
 	 		appStartPanel.add(currentIUPanel, "Image Upload");
