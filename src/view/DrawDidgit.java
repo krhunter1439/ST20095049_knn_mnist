@@ -18,10 +18,17 @@ public class DrawDidgit {
 		public DrawDidgit() {}
 	public JPanel createPanel(JPanel parentPanel, int frameWidth, int frameHeight) {// Layout DESIGN 
 				
+		
+		
+		
 		JPanel drawDigitPanel = new JPanel();		
 		
 		drawDigitPanel.setBounds(0, 0, frameWidth, frameHeight);
 		drawDigitPanel.setLayout(new BorderLayout());
+		
+		
+		
+		
 		
 		JPanel statusPanel = new JPanel(); 
 		JLabel numberLabel = new JLabel("Number: ");
