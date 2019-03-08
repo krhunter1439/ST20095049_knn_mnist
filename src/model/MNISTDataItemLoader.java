@@ -9,8 +9,8 @@ public class MNISTDataItemLoader extends MNISTDataItem {
 
 	private ImageController tempImageController = null;
 	// import MNIST images
-	String train_label_filename = "train-labels.idx1-ubyte";
-	String train_image_filename = "train-images.idx3-ubyte";
+	String train_label_filename = "train-label.idx1-ubyte";
+	String train_image_filename = "train-images.idx3-ubyte" ;
 	
 	FileInputStream in_stream_labels = null;
 	FileInputStream in_stream_images = null;
@@ -114,6 +114,8 @@ public class MNISTDataItemLoader extends MNISTDataItem {
 	    }	
 	}
  
+	
+	
 	public void computingEcludianDidst() throws NullPointerException {
 		System.out.println("start Distance");
 		MNISTDataItem[] processedMDIArray = new MNISTDataItem[this.getDIArray().length];
@@ -122,8 +124,8 @@ public class MNISTDataItemLoader extends MNISTDataItem {
 		if (ComparisonImage != null) {
 			int currentImageWidth = ComparisonImage.getWidth();
 			int currentImageHeight = ComparisonImage.getHeight();
-			double mseValue = 0.0;
-			double squareSum = 0.0; 
+			double mseValue = -800;
+			double squareSum = 6000; 
 			for(int i =0; i < tempDataArray.length; i++) {
 				MNISTDataItem currentComparisonMNISTDataItem = tempDataArray[i]; 
 				BufferedImage currentComparisonImage = currentComparisonMNISTDataItem.getMNISTbuffimage();
@@ -148,19 +150,19 @@ public class MNISTDataItemLoader extends MNISTDataItem {
 	public double getConfidence( int k ) {   
 		
 		System.out.println("start knn");
-		int maxCountLabel = 0; 
-	    int maxCount = 0;
+		int maxCountLabel = 1; 
+	    int maxCount = 1;
 	    try {
 	    	this.sortArray(); 
 	    	int differenceCount = 1 ;  
-	    	
+	    	/*
 	    	for(int firstCount = 0; firstCount < k; firstCount++ ) {
 	    		MNISTDataItem LIatIndex = get(firstCount);
 	    		MNISTDataItem currentLabel = currentDataItems[firstCount];
 	    		System.out.println("first Count");
 	    		
 	    	}
-	    	
+	    	*/
 	    	for(int secondCount = 0; secondCount < k; secondCount++ ) {
 	    		if (secondCount > 0  ) {
 	    			MNISTDataItem objectAtCurrentIndex = currentDataItems[secondCount];
@@ -186,6 +188,7 @@ public class MNISTDataItemLoader extends MNISTDataItem {
 	    				if(selectedObjectAtCurrentIndex.getMNISTlbl() == selectedObjectAtPreviousIndex.getMNISTlbl()) {
 	    					count++;
 	    				}
+	    			
 	    				else {
 	    					trackedLabel = selectedObjectAtCurrentIndex.getMNISTlbl();
 	    					trackedDistance = selectedObjectAtCurrentIndex.getKnnDistanceValue();
@@ -197,80 +200,60 @@ public class MNISTDataItemLoader extends MNISTDataItem {
 	    			
 	    			labelTrackingArray[internalDifferenceCount] = trackedLabel;
 	    			countTrackingArray[internalDifferenceCount] = count;
-	    			distanceTrackingArray[internalDifferenceCount] = trackedDistance; 
+	    			distanceTrackingArray[internalDifferenceCount] = trackedDistance;  
+	    			System.out.println("third Count");
 	    			}
 	    	}
-	    	System.out.println("third Count");
+	    
 	    	 for (int fourthCount = 0; fourthCount < differenceCount; fourthCount++) {
+	    		 System.out.println("fourth count 1");
 	    		 if(fourthCount > 0) {
+	    			 System.out.println("fourth count 2");
 	    			 if(distanceTrackingArray[fourthCount - 1] < distanceTrackingArray[fourthCount]) {
-	    				 if(countTrackingArray[fourthCount] >= countTrackingArray[fourthCount - 1]) {
-	    					 maxCountLabel = labelTrackingArray[fourthCount - 1]; 
-	    					 maxCount = countTrackingArray[fourthCount - 1];
+	    				 System.out.println("fourth count 3");
+	    				 if(countTrackingArray[fourthCount] >= countTrackingArray[fourthCount - 1]) { 
+	    					 System.out.println("fourth count 4");
+	    					 maxCountLabel = labelTrackingArray[fourthCount - 1];  
+	    					 System.out.println("fourth count 5");
+	    					 maxCount = countTrackingArray[fourthCount - 1]; 
+	    					 System.out.println("fourth count 6");
 	    				 }
 	    			 }
 	    			 else {
+	    				 
 	    				 maxCountLabel = labelTrackingArray[fourthCount];
 	    				 maxCount = countTrackingArray[fourthCount];
+	    				 System.out.println("fourth count 7");
 	    			 }
 	    		 }
 	    			 else {
 	    				 maxCountLabel = labelTrackingArray[fourthCount]; 
-	    				 maxCount = countTrackingArray[fourthCount];
+	    				 maxCount = countTrackingArray[fourthCount]; 
+	    				System.out.println("fourth count 8");
 	    				 }
 	    		 }
-	    	 System.out.println("fourth count");
+	    	// System.out.println("fourth count");
 	    	 } catch (Exception e) {
 	    		 e.printStackTrace();
 	    	 }
+	    
 	    	this.setRecogniseDidgit(maxCountLabel);
 		    double accuracyratio = ((double) maxCount / k ) * 100; 
 			return accuracyratio;	
+			
 		}
 	
-		private MNISTDataItem get(int firstCount) {
+	
+	//	private MNISTDataItem get(int firstCount) {
 		// TODO Auto-generated method stub
-		return null;
-	}
-/*
-		
-		this.sortArray(); 
-		int[] labelArray = new int [k];
-		MNISTDataItem[] tempMDIArray = this.getDIArray();
-		for(int internalCount = 0; internalCount < k; internalCount++) { 
-			MNISTDataItem lblIndex = tempMDIArray[internalCount];
-			labelArray[internalCount] = lblIndex.getMNISTlbl();
-		}
-		int maxCount =  0; 
-		int maxCountLabel = 0; 
-		int [][ ] countTrackingArray = new int[9][1];
-		for (int selectedNumber = 1; selectedNumber <= 9; selectedNumber++) {
-			int totalCount = 0; 
-			for(int actualCount = 0; actualCount < labelArray.length; actualCount++) {
-				if (labelArray[actualCount] == selectedNumber) {
-					totalCount = totalCount + 1;
-					
-				}
-			}
-			countTrackingArray[(selectedNumber-1) ][0] = totalCount;			
-		}
-		for (int iteratedNumber =  0; iteratedNumber < 9; iteratedNumber++) {
-			if (maxCount < countTrackingArray[iteratedNumber][0]) {
-				maxCount = countTrackingArray[iteratedNumber][0]; 
-				maxCountLabel  = iteratedNumber + 1; 
-			}
-		}	
-		setRecogniseDidgit(maxCountLabel);
-		double accuracyratio = ((double) maxCount / k) * 100; 
-		return accuracyratio;
-		
-	}	
-	*/
+		//return null;
+	//}
+
 	public int getRecogniseDidgit() {
 		return this.recognizedDigit;
 	}
-		public void setRecogniseDidgit( int suppliedDidgit) {
-		this.recognizedDigit = suppliedDidgit;
+		public void setRecogniseDidgit( int maxCountLabels ) {
+		this.recognizedDigit = maxCountLabels;
 		System.out.println("end KNN");
 	}
 
