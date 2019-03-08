@@ -58,12 +58,12 @@ public class ImageUpload {
 				        DILoader = new MNISTDataItemLoader();
 				        DILoader.setImageController(ICObject);
 				        DILoader.loadItemArray();
-				     DILoader.computingEcludianDidst();
+				     // DILoader.computingEcludianDidst();
 				        int recognizedDigit = DILoader.getRecogniseDidgit();
 				       double confidenceMeasure = DILoader.getConfidence(3); 
 				        numberLabel.setText("Number: " + recognizedDigit);
 				        accuracyLabel.setText("Accuracy: %" + confidenceMeasure ); 
-				        
+				        System.out.println("image sent to be processed ");
 					}
 				} catch (Exception ex) {
 					ex.printStackTrace();

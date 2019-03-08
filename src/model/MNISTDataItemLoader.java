@@ -9,7 +9,7 @@ public class MNISTDataItemLoader extends MNISTDataItem {
 
 	private ImageController tempImageController = null;
 	// import MNIST images
-	String train_label_filename = "train-label.idx1-ubyte";
+	String train_label_filename = "train-labels.idx1-ubyte";
 	String train_image_filename = "train-images.idx3-ubyte" ;
 	
 	FileInputStream in_stream_labels = null;
@@ -115,7 +115,7 @@ public class MNISTDataItemLoader extends MNISTDataItem {
 	}
  
 	
-	
+	/*
 	public void computingEcludianDidst() throws NullPointerException {
 		System.out.println("start Distance");
 		MNISTDataItem[] processedMDIArray = new MNISTDataItem[this.getDIArray().length];
@@ -124,8 +124,8 @@ public class MNISTDataItemLoader extends MNISTDataItem {
 		if (ComparisonImage != null) {
 			int currentImageWidth = ComparisonImage.getWidth();
 			int currentImageHeight = ComparisonImage.getHeight();
-			double mseValue = -800;
-			double squareSum = 6000; 
+			double mseValue = 0;
+			double squareSum = 0.0; 
 			for(int i =0; i < tempDataArray.length; i++) {
 				MNISTDataItem currentComparisonMNISTDataItem = tempDataArray[i]; 
 				BufferedImage currentComparisonImage = currentComparisonMNISTDataItem.getMNISTbuffimage();
@@ -146,7 +146,7 @@ public class MNISTDataItemLoader extends MNISTDataItem {
 			System.out.println("end Distance");
 		}
 	}
-	
+	*/
 	public double getConfidence( int k ) {   
 		
 		System.out.println("start knn");
